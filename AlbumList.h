@@ -34,10 +34,14 @@ class AlbumList
     
     void SetInfo(int inAlbumId, string inAlbum);
     
+   
+    
 
     void DisplayAlbumIdOnScreen();
 
     void DisplayAlbumNameOnScreen();
+
+    void DisplaySongListOnScreen();//AlbumList안에 있는 해당하는 Album의 SongList를 출력
 
     void DisplayAlbumRecordsOnScreen();
 
@@ -56,6 +60,6 @@ class AlbumList
 protected:
 	int mAlbumId;	///< Primary key
 	string mAlbum;
-	BinarySearchTree<SongList> al_list;
+	BinarySearchTree<class SongList> al_list;
 }; 
 #endif //_ALBUMLIST_H

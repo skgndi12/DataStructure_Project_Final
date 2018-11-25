@@ -32,6 +32,7 @@ void GenreList::SetInfo(int inGenreId, string inGenre)
     SetGenreName(inGenre);
 }
 
+
 void GenreList::DisplayGenreIdOnScreen()
 {
     cout << "Genre ID : "<<  mGenreId << endl;
@@ -42,10 +43,16 @@ void GenreList::DisplayGenreNameOnScreen()
     cout << "Genre Name : " << mGenre << endl;
 }
 
+void GenreList::DisplaySongListOnScreen()
+{
+    g_list.PrintTree(cout);
+}
+
 void GenreList::DisplayGenreRecordsOnScreen()
 {
     DisplayGenreIdOnScreen();
     DisplayGenreNameOnScreen();
+    DisplaySongListOnScreen();
 }
 
 void GenreList::SetGenreIdFromKB()

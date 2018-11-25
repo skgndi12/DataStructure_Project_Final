@@ -33,11 +33,14 @@ class ArtistList
     void SetArtistName(string inArtist);
     
     void SetInfo(int inArtistId, string inArtist);
+
     
 
     void DisplayArtistIdOnScreen();
 
     void DisplayArtistNameOnScreen();
+
+    void DisplaySongListOnScreen();//ArtistList안에 있는 해당하는 Artist의 SongList를 출력
 
     void DisplayArtistRecordsOnScreen();
 
@@ -56,6 +59,6 @@ class ArtistList
 protected:
 	int mArtistId;	///< Primary key
 	string mArtist;
-	BinarySearchTree<SongList> ar_list;
+	BinarySearchTree<class SongList> ar_list;
 }; 
 #endif //_ARTISTLIST_H

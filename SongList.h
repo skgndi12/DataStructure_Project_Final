@@ -67,6 +67,17 @@ class SongList
         cout << "\tSong Title : " << s_title << endl;
     }
 
+    string to_string() const
+    {
+    string ID(std::to_string(s_id));
+    char buf[256];
+
+    ::snprintf(buf, sizeof(buf), "%s\n%s\n",
+        ID.c_str(), s_title.c_str());
+	
+	return buf;
+    }
+
     void DisplayAll()
     {
         cout << "ID" << s_id << endl;

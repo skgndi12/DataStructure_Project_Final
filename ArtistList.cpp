@@ -32,6 +32,7 @@ void ArtistList::SetInfo(int inArtistId, string inArtist)
     SetArtistName(inArtist);
 }
 
+
 void ArtistList::DisplayArtistIdOnScreen()
 {
     cout << "Artist ID : "<<  mArtistId << endl;
@@ -42,10 +43,16 @@ void ArtistList::DisplayArtistNameOnScreen()
     cout << "Artist Name : " << mArtist << endl;
 }
 
+void ArtistList::DisplaySongListOnScreen()
+{
+    ar_list.PrintTree(cout);
+}
+
 void ArtistList::DisplayArtistRecordsOnScreen()
 {
     DisplayArtistIdOnScreen();
     DisplayArtistNameOnScreen();
+    DisplaySongListOnScreen();
 }
 
 void ArtistList::SetArtistIdFromKB()
