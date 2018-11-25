@@ -34,10 +34,11 @@ class GenreList
     
     void SetInfo(int inGenreId, string inGenre);
     
-
     void DisplayGenreIdOnScreen();
 
     void DisplayGenreNameOnScreen();
+
+    void DisplaySongListOnScreen();//GenreList안에 있는 해당하는 Genre의 SongList를 출력
 
     void DisplayGenreRecordsOnScreen();
 
@@ -56,6 +57,6 @@ class GenreList
 protected:
 	int mGenreId;	///< Primary key
 	string mGenre;
-	BinarySearchTree<SongList> g_list;
+	BinarySearchTree<class SongList> g_list;
 }; 
 #endif //_GENRELIST_H

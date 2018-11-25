@@ -42,10 +42,16 @@ void AlbumList::DisplayAlbumNameOnScreen()
     cout << "Album Name : " << mAlbum << endl;
 }
 
+void AlbumList::DisplaySongListOnScreen()
+{
+    al_list.PrintTree(cout);
+}
+
 void AlbumList::DisplayAlbumRecordsOnScreen()
 {
     DisplayAlbumIdOnScreen();
     DisplayAlbumNameOnScreen();
+    DisplaySongListOnScreen();
 }
 
 void AlbumList::SetAlbumIdFromKB()
