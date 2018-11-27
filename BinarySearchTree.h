@@ -300,7 +300,6 @@ void PrintPostOrderTraversal(Node<T>* root, ostream& out)
 		PrintPostOrderTraversal(root->left, out);	// root의 왼쪽으로 가서 다시 PostOrder 함수 호출
 		PrintPostOrderTraversal(root->right, out);	// root의 오른쪽으로 가서 다시 PostOrder 함수 호출
 		out << root->data.to_string();							// root의 값 출력
-		root->data.to_string();
 	}
 }
 
