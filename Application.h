@@ -4,6 +4,9 @@
 
 #include "BinarySearchTree.h"
 #include "MasterType.h"
+#include "GenreList.h"
+#include "ArtistList.h"
+#include "AlbumList.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -42,6 +45,9 @@ public:
 	*	@pre	none
 	*	@post	Tree에서 item이 지워짐
 	*/
+
+	void Add();
+	//MasterType에서 제목을 검색해서 해당 데이터들을 Album & Genre & Artist 리스트에 추가한다.
 	void RemoveItem();
 
 	/**
@@ -59,7 +65,12 @@ public:
 	void SearchItem();
 
 private:
-	BinarySearchTree<class MasterType> Tree;		// BinarySearchTree 객체
+	BinarySearchTree<class MasterType> Tree;
+	// MasterType 객체
+	BinarySearchTree<class GenreList> g_Tree;
+	// GenreList 객체
+	BinarySearchTree<class AlbumList> al_Tree;
+	BinarySearchTree<class ArtistList> ar_Tree;
 	int command;							// command
 
 };

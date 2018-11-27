@@ -10,17 +10,22 @@ string MasterType::GetArtist()
 {
     return artist;
 }
-
+string MasterType::GetComposer()
+{
+    return composer;
+}
+string MasterType::GetLyricist()
+{
+    return lyricist;
+}
 string MasterType::GetAlbum()
 {
     return album;
 }
-
 string MasterType::GetGenre()
 {
     return genre;
 }
-
 string MasterType::GetLyric()
 {
     return lyric;
@@ -40,6 +45,16 @@ void MasterType::SetArtist(string in_artist)
 {
     artist = in_artist;
 }
+
+void MasterType::SetComposer(string in_composer)
+{
+    composer = in_composer;
+}
+
+void MasterType::SetLyricist(string in_lyricist)
+{
+    lyricist = in_lyricist;
+}
 void MasterType::SetAlbum(string in_album)
 {
     album = in_album;
@@ -54,11 +69,13 @@ void MasterType::SetLyric(string in_lyric)
 }
 
 
-void MasterType::SetRecord(int in_id, string in_title,string in_artist,string in_album, string in_genre, string in_lyric)
+void MasterType::SetRecord(int in_id, string in_title,string in_artist,string in_composer,string in_lyricist,string in_album, string in_genre, string in_lyric)
 {
     SetId(in_id);
     SetTitle(in_title);
     SetArtist(in_artist);
+    SetComposer(in_composer);
+    SetLyricist(in_lyricist);
     SetAlbum(in_album);
     SetGenre(in_genre);
     SetLyric(in_lyric);
@@ -76,6 +93,14 @@ void MasterType::DisplayTitleOnScreen()
 void MasterType::DisplayArtistOnScreen()
 {
     cout << "\tArtist : "<< artist << endl;
+}
+void MasterType::DisplayComposerOnScreen()
+{
+    cout << "\tCompose : " << composer << endl;
+}
+void MasterType::DisplayLyricistOnScreen()
+{
+    cout << "\tLyricist : " << lyricist << endl;
 }
 void MasterType::DisplayAlbumOnScreen()
 {
@@ -95,6 +120,8 @@ void MasterType::DisplayRecordOnScreen()
     DisplayIdOnScreen();
     DisplayTitleOnScreen();
     DisplayArtistOnScreen();
+    DisplayComposerOnScreen();
+    DisplayLyricistOnScreen();
     DisplayAlbumOnScreen();
     DisplayGenreOnScreen();
     DisplayLyricOnScreen();
@@ -120,7 +147,16 @@ void MasterType::SetArtistFromKB()
     getline(cin,artist);
 }
 
-
+void MasterType::SetComposerFromKB()
+{
+    cout << "\tComposer : ";
+    getline(cin, composer);
+}
+void MasterType::SetLyricistFromKB()
+{
+    cout << "\tLyricist : ";
+    getline(cin, lyricist);
+}
 // Set album from keyboard.
 void MasterType::SetAlbumFromKB()
 {
@@ -147,6 +183,8 @@ void MasterType::SetRecordFromKB()
     SetIdFromKB();
     SetTitleFromKB();
     SetArtistFromKB();
+    SetComposerFromKB();
+    SetLyricistFromKB();
     SetAlbumFromKB();
     SetGenreFromKB();
     SetLyricFromKB();
@@ -157,7 +195,11 @@ void MasterType::SetRecordFromKB()
 // Read a record from file.
 int MasterType::ReadDataFromFile(ifstream& fin)
 {
+    fin >> id;
+    fin >> title;
     fin >> artist;
+    fin >> composer;
+    fin >> lyricist;
     fin >> album;
     fin >> genre;
     fin >> lyric;
@@ -170,7 +212,11 @@ int MasterType::ReadDataFromFile(ifstream& fin)
 int MasterType::WriteDataToFile(ofstream& fout)
 {
    
+    fout << id << " ";
+    fout << title << " ";
     fout << artist << " ";
+    fout << composer << " ";
+    fout << lyricist << " ";
     fout << album << " ";
     fout << genre << " ";
     fout << lyric << " ";
@@ -183,8 +229,8 @@ string MasterType::to_string() const
     string ID(std::to_string(id));
     char buf[256];
 
-    ::snprintf(buf, sizeof(buf), "%s\n%s\n%s\n%s\n%s\n%s\n",
-        ID.c_str(), title.c_str(), artist.c_str(),
+    ::snprintf(buf, sizeof(buf), "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
+        ID.c_str(), title.c_str(), artist.c_str(),composer.c_str(), lyricist.c_str(),
         album.c_str(), genre.c_str(), lyric.c_str());
 	
 	return buf;

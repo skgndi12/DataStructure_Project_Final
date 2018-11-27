@@ -27,6 +27,8 @@ class MasterType
             id = -1;
             title = "";
             artist = "";
+            composer = "";
+            lyricist = "";
             album = "";
             genre = "";
             lyric = "";
@@ -76,6 +78,10 @@ class MasterType
          *  @return 앨범명을 반환
          */
 
+        string GetComposer();
+
+        string GetLyricist();
+
         string GetAlbum();
 
         /**
@@ -111,6 +117,10 @@ class MasterType
         
         void SetArtist(string in_artist);
 
+        void SetComposer(string in_composer);
+
+        void SetLyricist(string in_lyricist);
+
 
         /**
          *  @brief 앨범명를 설정
@@ -131,7 +141,7 @@ class MasterType
 
         void SetLyric(string in_lyric);
 
-        void SetRecord(int in_id, string in_title, string in_artist, string in_album,string in_genre,string in_lyric);
+        void SetRecord(int in_id, string in_title, string in_artist,string in_composer,string in_lyricist, string in_album,string in_genre,string in_lyric);
 
         /**
          *  @brief 화면에 곡명을 보여줌
@@ -150,6 +160,11 @@ class MasterType
          */
 
         void DisplayArtistOnScreen();
+
+
+        void DisplayComposerOnScreen();
+
+        void DisplayLyricistOnScreen();
 
         /**
          *  @breif  화면에 앨범명를 보여줌
@@ -195,6 +210,10 @@ class MasterType
      */
 
     void SetArtistFromKB();
+
+    void SetComposerFromKB();
+
+    void SetLyricistFromKB();
 
     /**
      * @brief   앨범명를 키보드로부터 설정
@@ -276,6 +295,8 @@ private:
     int id;
     string title;
     string artist;    
+    string composer;
+    string lyricist;
     string album;  
     string genre;
     string lyric;

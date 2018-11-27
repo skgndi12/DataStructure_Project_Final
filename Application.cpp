@@ -59,6 +59,26 @@ void Application::InsertItem()
 	DisplayItem();						// 현재 Tree의 node를 모두 출력함
 }
 
+void Application::Add()
+{
+	string data;
+	cout << "Enter music to add to the user list : " << endl;
+	MasterType item;
+	item.SetTitleFromKB();
+	GenreList g_item;
+	AlbumList al_item;
+	ArtistList ar_item;
+	bool found;
+	Tree.RetrieveItem(item, found);
+
+	if(found == true)
+	{
+		//SongList 자료형을 만들고 거기다가 MasterType의 ID를 받아서 넣고 각 List에 추가
+
+	}
+
+	
+}
 // Tree에서 item을 지우는 함수
 void Application::RemoveItem()
 {
