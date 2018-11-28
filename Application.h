@@ -7,6 +7,8 @@
 #include "GenreList.h"
 #include "ArtistList.h"
 #include "AlbumList.h"
+#include "SongList.h"
+#include <string>
 #include <iostream>
 #include <string>
 using namespace std;

@@ -283,13 +283,13 @@ class MasterType
 
     string to_string() const;//MasterType의 데이터를 모두 string으로 바꾼다.
 
-    bool operator>(MasterType item);
+    bool operator>(const MasterType &item);
 
 
-    bool operator<(MasterType item);
+    bool operator<(const MasterType &item);
 
 
-    bool operator==(MasterType item);
+    bool operator==(const MasterType &item);
 
 private:
     int id;

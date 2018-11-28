@@ -65,22 +65,31 @@ void GenreList::SetGenreNameFromKB()
     cin >> mGenre;
 }
 
+string GenreList::to_string() const
+{
+    char buf[256];
+
+    ::snprintf(buf, sizeof(buf), "%s\n",
+        mGenre.c_str());
+	
+	return buf;
+}
 bool GenreList::operator== (const GenreList &obj)
 {
-	return (this->mGenreId==obj.mGenreId);
+	return (this->mGenre == obj.mGenre);
 }
 
 bool GenreList::operator> (const GenreList &obj)
 {
-	return (this->mGenreId>obj.mGenreId);
+	return (this->mGenre > obj.mGenre);
 }
 
 bool GenreList::operator< (const GenreList &obj)
 {
-	return (this->mGenreId<obj.mGenreId);
+	return (this->mGenre < obj.mGenre);
 }
 
 bool GenreList::operator!= (const GenreList &obj) 
 {
-    return (this->mGenreId != obj.mGenreId);
+    return (this->mGenre != obj.mGenre);
 }

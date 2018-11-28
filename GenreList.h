@@ -14,8 +14,16 @@ class GenreList
         mGenreId = -1;
         mGenre = "";
     }
+    GenreList& operator= (GenreList &obj)
+	{
+		this->mGenreId = obj.mGenreId;
+		this->mGenre = obj.mGenre;
+		this->g_list = obj.g_list;
 
-    GenreList(SongList data)
+		return *this;
+	}
+
+    void AddSongList(SongList data)
     {
         g_list.Add(data);
     }
@@ -45,6 +53,8 @@ class GenreList
     void SetGenreIdFromKB();
 
     void SetGenreNameFromKB();
+
+    string to_string() const;//GenreType의 데이터를 모두 string으로 바꾼다.
 
     bool operator== (const GenreList &);
 

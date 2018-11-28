@@ -14,8 +14,16 @@ class AlbumList
         mAlbumId = -1;
         mAlbum = "";
     }
+    AlbumList& operator= (AlbumList &obj)
+	{
+        this->mAlbumId = obj.mAlbumId;
+		this->mAlbum = obj.mAlbum;
+		this->al_list = obj.al_list;
 
-    AlbumList(SongList data)
+		return *this;
+	}
+
+    void AddSongList(SongList data)
     {
         al_list.Add(data);
     }
@@ -49,6 +57,8 @@ class AlbumList
 
     void SetAlbumNameFromKB();
 
+    string to_string() const;//AlbumType의 데이터를 모두 string으로 바꾼다.
+    
     bool operator== (const AlbumList &);
 
 	bool operator> (const AlbumList &);

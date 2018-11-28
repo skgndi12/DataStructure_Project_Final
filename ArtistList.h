@@ -15,7 +15,16 @@ class ArtistList
         mArtist = "";
     }
 
-    ArtistList(SongList data)
+    ArtistList& operator= (ArtistList &obj)
+	{
+		this->mArtistId = obj.mArtistId;
+		this->mArtist = obj.mArtist;
+		this->ar_list = obj.ar_list;
+
+		return *this;
+	}
+
+    void AddSongList(SongList data)
     {
         ar_list.Add(data);
     }
@@ -48,7 +57,9 @@ class ArtistList
 
     void SetArtistNameFromKB();
 
-    bool operator== (const ArtistList &);
+    string to_string() const;//ArtistType의 데이터를 모두 string으로 바꾼다.
+
+     bool operator== (const ArtistList &);
 
 	bool operator> (const ArtistList &);
 	

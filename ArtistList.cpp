@@ -65,22 +65,31 @@ void ArtistList::SetArtistNameFromKB()
     cin >> mArtist;
 }
 
+string ArtistList::to_string() const
+{
+    char buf[256];
+
+    ::snprintf(buf, sizeof(buf), "%s\n",
+        mArtist.c_str());
+	
+	return buf;
+}
 bool ArtistList::operator== (const ArtistList &obj)
 {
-	return (this->mArtistId==obj.mArtistId);
+	return (this->mArtist == obj.mArtist);
 }
 
 bool ArtistList::operator> (const ArtistList &obj)
 {
-	return (this->mArtistId>obj.mArtistId);
+	return (this->mArtist > obj.mArtist);
 }
 
 bool ArtistList::operator< (const ArtistList &obj)
 {
-	return (this->mArtistId<obj.mArtistId);
+	return (this->mArtist < obj.mArtist);
 }
 
 bool ArtistList::operator!= (const ArtistList &obj) 
 {
-    return (this->mArtistId != obj.mArtistId);
+    return (this->mArtist != obj.mArtist);
 }

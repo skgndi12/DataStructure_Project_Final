@@ -74,7 +74,7 @@ public:
 	*/
 	void RetrieveItem(T& item, bool &found)const;
 
-	T* Get(T& item, bool &found);// 이 부분 질문!(변수 개수가 안 맞는데 동작하나요??)
+	T* Get(T& item, bool &found);
 
 	/**
 	*	@brief	Tree의 node를 스크린에 출력한다.
@@ -316,7 +316,7 @@ T* Get(Node<T> *root, T& item, bool &found)
 		Get(root->right, item, found);	// 오른쪽 노드로 가서 retrieve 함수 호출
 	else
 	{										// 찾고자 하는 값과 일치할 때
-		return root;					// item에 노드 정보를 복사
+		return *root;					// item에 노드 정보를 복사
 		found = true;						// found값을 true로 해서 찾는 과정을 멈춤
 	}
 }

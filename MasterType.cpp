@@ -6,6 +6,10 @@ int MasterType::GetId()
 {
     return id;
 }
+string MasterType::GetTitle()
+{
+    return title;
+}
 string MasterType::GetArtist()
 {
     return artist;
@@ -237,29 +241,23 @@ string MasterType::to_string() const
 }
 
 
-bool MasterType::operator>(MasterType item)
+bool MasterType::operator>(const MasterType &obj)
 {
-    if(this->GetId() > item.GetId())
+	return (this->title > obj.title);
+}
+bool MasterType::operator==(const MasterType &obj)
+{
+    if(this->title == obj.title)
     {
         return true;
     }
-return false;
+    return false;
 }
-bool MasterType::operator==(MasterType item)
+    
+bool MasterType::operator<(const MasterType &obj)
 {
-    if(this->GetId() == item.GetId())
-    {
-        return true;
-    }
-return false;
+	return (this->title < obj.title);
 }
-bool MasterType::operator<(MasterType item)
-{
-    if(this->GetId() < item.GetId())
-    {
-        return true;
-    }
-return false;
-}
+
 
 // Compare two itemtypes.

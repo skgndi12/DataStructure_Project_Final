@@ -63,23 +63,31 @@ void AlbumList::SetAlbumNameFromKB()
 {
     cin >> mAlbum;
 }
+string AlbumList::to_string() const
+{
+    char buf[256];
 
+    ::snprintf(buf, sizeof(buf), "%s\n",
+        mAlbum.c_str());
+	
+	return buf;
+}
 bool AlbumList::operator== (const AlbumList &obj)
 {
-	return (this->mAlbumId==obj.mAlbumId);
+	return (this->mAlbum == obj.mAlbum);
 }
 
 bool AlbumList::operator> (const AlbumList &obj)
 {
-	return (this->mAlbumId>obj.mAlbumId);
+	return (this->mAlbum > obj.mAlbum);
 }
 
 bool AlbumList::operator< (const AlbumList &obj)
 {
-	return (this->mAlbumId<obj.mAlbumId);
+	return (this->mAlbum < obj.mAlbum);
 }
 
 bool AlbumList::operator!= (const AlbumList &obj) 
 {
-    return (this->mAlbumId != obj.mAlbumId);
+    return (this->mAlbum != obj.mAlbum);
 }
