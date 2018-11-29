@@ -50,7 +50,19 @@ class MasterType
             return *this;
         }*/
 
-        /**
+        MasterType& operator= (MasterType &obj)
+            {
+                this->id = obj.id;
+                this->title = obj.title;
+                this->composer = obj.composer;
+                this->lyricist = obj.lyricist;
+                this->album = obj.album;
+                this->genre = obj.genre;
+                this->lyric = obj.lyric;
+
+                return *this;
+            }
+            /**
          *  @brief  곡명
          *  @pre    곡명 설정
          *  @post   없음
@@ -142,6 +154,8 @@ class MasterType
         void SetLyric(string in_lyric);
 
         void SetRecord(int in_id, string in_title, string in_artist,string in_composer,string in_lyricist, string in_album,string in_genre,string in_lyric);
+
+        
 
         /**
          *  @brief 화면에 곡명을 보여줌
@@ -242,6 +256,8 @@ class MasterType
 
 
     void SetRecordFromKB();
+
+    void ResetSongInfoFromKB();
 
     /**
      * @brief   파일로부터 기록을 읽음

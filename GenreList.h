@@ -14,6 +14,9 @@ class GenreList
         mGenreId = -1;
         mGenre = "";
     }
+
+    ~GenreList(){}
+    
     GenreList& operator= (GenreList &obj)
 	{
 		this->mGenreId = obj.mGenreId;
@@ -28,7 +31,11 @@ class GenreList
         g_list.Add(data);
     }
 
-    ~GenreList(){}
+    void DeleteSongList(SongList data)
+    {
+        g_list.DeleteItem(data);
+    }
+
 
     int GetGenreId();
     

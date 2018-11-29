@@ -15,6 +15,8 @@ class ArtistList
         mArtist = "";
     }
 
+    ~ArtistList(){}
+
     ArtistList& operator= (ArtistList &obj)
 	{
 		this->mArtistId = obj.mArtistId;
@@ -29,7 +31,11 @@ class ArtistList
         ar_list.Add(data);
     }
 
-    ~ArtistList(){}
+    void DeleteSongList(SongList data)
+    {
+        ar_list.DeleteItem(data);
+    }
+
 
     int GetArtistId();
     

@@ -201,6 +201,10 @@ void Insert(Node<T>*& root, T item)
 		Insert(root->left, item);	// root의 왼쪽으로 Insert 함수 다시 호출
 	else if (root->data < item)		// root가 존재하고, 그 값이 새로운 item 값보다 작을 때
 		Insert(root->right, item);	// root의 오른쪽으로 Insert 함수 다시 호출
+	else if (root->data == item)
+	{
+		root->data = item;
+	}
 }
 
 // 가장 큰 값을 찾는 함수 

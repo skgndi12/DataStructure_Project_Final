@@ -14,6 +14,9 @@ class AlbumList
         mAlbumId = -1;
         mAlbum = "";
     }
+
+    ~AlbumList(){}
+    
     AlbumList& operator= (AlbumList &obj)
 	{
         this->mAlbumId = obj.mAlbumId;
@@ -28,7 +31,11 @@ class AlbumList
         al_list.Add(data);
     }
 
-    ~AlbumList(){}
+    void DeleteSongList(SongList data)
+    {
+        al_list.DeleteItem(data);
+    }
+
 
     int GetAlbumId();
     

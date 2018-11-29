@@ -64,6 +64,7 @@ public:
 	*	@pre	none
 	*	@post	Tree에 있으면 관련 정보도 같이 출력, 없으면 없다는 문구 출력
 	*/
+	void RepalceItem();// List에 있는 기존의 item들을 곡명과 id를 입력받아 찾은 후 해당 노드의 변수들을 다시 재설정한다.
 	void SearchItem();
 
 private:

@@ -84,6 +84,7 @@ void MasterType::SetRecord(int in_id, string in_title,string in_artist,string in
     SetGenre(in_genre);
     SetLyric(in_lyric);
 }
+
 void MasterType::DisplayIdOnScreen()
 {
     cout << "\tId : " << id << endl;
@@ -148,7 +149,7 @@ void MasterType::SetTitleFromKB()
 void MasterType::SetArtistFromKB()
 {
     cout << "\tArtist : ";
-    getline(cin,artist);
+    getline(cin, artist);
 }
 
 void MasterType::SetComposerFromKB()
@@ -194,6 +195,15 @@ void MasterType::SetRecordFromKB()
     SetLyricFromKB();
 }
 
+void MasterType::ResetSongInfoFromKB()
+{
+    SetArtistFromKB();
+    SetComposerFromKB();
+    SetLyricistFromKB();
+    SetAlbumFromKB();
+    SetGenreFromKB();
+    SetLyricistFromKB();
+}
 
 
 // Read a record from file.

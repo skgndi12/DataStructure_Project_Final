@@ -20,6 +20,14 @@ class SongList
     //destructor set
     ~SongList(){}
 
+    SongList& operator= (SongList &obj)
+	{
+		this->s_id = obj.s_id;
+		this->s_title = obj.s_title;
+
+		return *this;
+	}
+
     void SetId(int in_id)
     {
         s_id = in_id;
