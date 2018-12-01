@@ -10,7 +10,6 @@
 #include "SongList.h"
 #include <string>
 #include <iostream>
-#include <string>
 using namespace std;
 
 class Application
@@ -50,7 +49,15 @@ public:
 
 	void Add();
 	//MasterType에서 제목을 검색해서 해당 데이터들을 Album & Genre & Artist 리스트에 추가한다.
-	void RemoveItem();
+
+	void RemoveItem();//MasterType에서 곡들을 삭제해서 각 리스트에서도 해당 곡을 삭제한다.
+
+	void DeleteGenreItem();//GenreList의 SongList 속에있는 item을 지운다.
+
+	void DeleteAlbumItem();//AlbumList의 SongList 속에있는 item을 지운다.
+
+	void DeleteArtistItem();//ArtistList의 SongList 속에있는 item을 지운다.
+
 
 	/**
 	*	@brief	Tree의 모든 item을 출력함

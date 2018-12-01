@@ -57,12 +57,16 @@ void GenreList::DisplayGenreRecordsOnScreen()
 
 void GenreList::SetGenreIdFromKB()
 {
-    cin >> mGenreId;
+    string ID;
+    cout << "\tGenre ID : ";
+    getline(cin, ID);
+    mGenreId = stoi(ID);
 }
 
 void GenreList::SetGenreNameFromKB()
 {
-    cin >> mGenre;
+    cout << "\tGenre Name: ";
+    getline(cin, mGenre);
 }
 
 string GenreList::to_string() const

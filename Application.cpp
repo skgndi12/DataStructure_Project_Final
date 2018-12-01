@@ -27,6 +27,15 @@ void Application::Run()
 		case 6:
 			RepalceItem();
 			break;
+		case 7:
+			DeleteGenreItem();
+			break;
+		case 8:
+			DeleteAlbumItem();
+			break;
+		case 9:
+			DeleteArtistItem();
+			break;
 		case 0:
 			return;
 		default:
@@ -42,12 +51,15 @@ int Application::GetCommand()
 	string command;
 	cout << endl << endl;
 	cout << "\t---ID -- Command ----- " << endl;
-	cout << "\t   1 : Add Item" << endl;
-	cout << "\t   2 : Delete Item" << endl;
+	cout << "\t   1 : Add Item to the Master List" << endl;
+	cout << "\t   2 : Delete Item to the Master List" << endl;
 	cout << "\t   3 : Display Item" << endl;
 	cout << "\t   4 : Search Item" << endl;
-	cout << "\t   5 : Add Song in each list" << endl;
-	cout << "\t   6 : Update song in each list" << endl;
+	cout << "\t   5 : Add Song in All List" << endl;
+	cout << "\t   6 : Update Song in All List" << endl;
+	cout << "\t   7 : Delete Song in Genre List" << endl;
+	cout << "\t   8 : Delete Song in Album List" << endl;
+	cout << "\t   9 : Delete Song in Artist List" << endl;
 	cout << "\t   0 : Quit " << endl;
 
 	cout << endl << "\t Choose a Command--> ";
@@ -139,19 +151,193 @@ void Application::Add()
 void Application::RemoveItem()
 {
 	MasterType item;
-	cout << "Input Id to delete item : " << endl;
-	item.SetIdFromKB();					// Tree에서 지우려고 하는 item 값을 키보드로부터 입력받음
-
+	GenreList g_item;
+	AlbumList al_item;
+	ArtistList ar_item;
+	SongList indata;
+	cout << "Input Id and Title to delete item : " << endl;
+	item.SetIdFromKB();					// Tree에서 지우려고 하는 id 값을 키보드로부터 입력받음
+	item.SetTitleFromKB();            //Tree에서 지우려고 하는 title 값을 키보드로부터 입력받음
+	indata.SetInfo(item.GetId(), item.GetTitle());// 입력받은 정보를 song list에 저장
 	bool found;							// 검색여부에 따른 결과를 저장할 found
+	bool found_g;
+	bool found_al;
+	bool found_ar;
 	Tree.RetrieveItem(item, found);		// RetrieveItem 함수를 통해서 Tree에서 검색
+	g_item.SetGenreName(item.GetGenre());//g_Tree에서 지우려고 하는 Genre name을 item으로부터 받아서 g_item에 저장
+	g_Tree.RetrieveItem(g_item, found_g);//g_Tree에서 해당하는 genre가 있는지 검색
+	al_item.SetAlbumName(item.GetAlbum());//al_Tree에서 지우려고 하는 Album name을 item으로부터 받아서 al_item에 저장
+	al_Tree.RetrieveItem(al_item, found_al);//al_Tree에서 해당하는 album가 있는지 검색
+	ar_item.SetArtistName(item.GetArtist());//ar_Tree에서 지우려고 하는 Artist name을 item으로부터 받아서 ar_item에 저장
+	ar_Tree.RetrieveItem(ar_item, found_ar);//ar_Tree에서 해당하는 artist가 있는지 검색
 
 	if (found == true)					// Tree에 item이 있으면
 	{
+		if(found_g == true)//해당하는 genre가 있는 경우
+		{
+			bool found_s;
+			BinarySearchTree<class SongList> *temp;
+			temp = g_item.GetGenreList();//해당하는 genre에서 g_list를 받아온다.
+			temp->RetrieveItem(indata, found_s);//g_list에서 입력받은 song list의 정보가 있는지 검색
+			if(found_s == true)//g_list에서 song list의 정보가 있을 경우
+			{
+				g_Tree.DeleteItem(g_item);//g_Tree에서 해당하는 장르의 노드를 지운다.
+				g_item.DeleteSongList(indata);//해당하는 장르에서 입력받은 song list의 데이터를 자운다.
+				g_Tree.Add(g_item);//지웠던 장르를 다시 추가한다.
+			}
+			else//g_list에서 song list의 정보가 없을 경우
+			{
+				cout << "There is no matched Song in Genre List" << endl;
+			}
+		}
+		else//해당하는 genre가 없을 경우
+		{
+			cout << "There is no matched Genre" << endl;
+		}
+		if(found_al == true)//해당하는 album이 있는 경우
+		{
+			bool found_s;
+			BinarySearchTree<class SongList> *temp;
+			temp = al_item.GetAlbumList();//해당하는 album에서 al_list를 받아온다.
+			temp->RetrieveItem(indata, found_s);//al_list에서 입력받은 song list의 정보가 있는지 검색
+			if(found_s == true)//al_list에서 song list의 정보가 있을 경우
+			{
+				al_Tree.DeleteItem(al_item);//al_Tree에서 해당하는 앨범의 노드를 지운다.
+				al_item.DeleteSongList(indata);//해당하는 앨범에서 입력받은 song list의 데이터를 자운다.
+				al_Tree.Add(al_item);//지웠던 앨범을 다시 추가한다
+			}
+			else//al_list에서 song list의 정보가 없을 경우
+			{
+				cout << "There is no matched Song in Album List" << endl;
+			}
+		}
+		
+		else//해당하는 album이 없을 경우
+		{
+			cout << "There is no matched Album" << endl;
+		}
+		if(found_ar == true)//해당하는 artist가 있는 경우
+		{
+			bool found_s;
+			BinarySearchTree<class SongList> *temp;
+			temp = ar_item.GetArtistList();//해당하는 artist에서 ar_list를 받아온다.
+			temp->RetrieveItem(indata, found_s);//ar_list에서 입력받은 song list의 정보가 있는지 검색
+			if(found_s == true)//ar_list에서 song list의 정보가 있을 경우
+			{
+				ar_Tree.DeleteItem(ar_item);//ar_Tree에서 해당하는 앨범의 노드를 지운다.
+				ar_item.DeleteSongList(indata);//해당하는 앨범에서 입력받은 song list의 데이터를 자운다.
+				ar_Tree.Add(ar_item);//지웠던 앨범을 다시 추가한다
+			}
+			else//ar_list에서 song list의 정보가 없을 경우
+			{
+				cout << "There is no matched Song in Artist List" << endl;
+			}
+		}
+		else//해당하는 artist이 없을 경우
+		{
+			cout << "There is no matched Artist" << endl;
+		}	
 		Tree.DeleteItem(item);			// DeleteItem함수를 통해서 Tree에서 item값에 해당하는 노드를 삭제함
 		DisplayItem();					// 지우고 나서의 Tree를 출력
 	}
 	else
 		cout << "No item to delete" << endl;	// 지우려고 하는 값의 node가 없을 경우 
+}
+
+void Application::DeleteGenreItem()
+{
+	SongList s_item;
+	GenreList g_item;
+	bool found_s;
+	bool found_g;
+	cout << "Input Id and Title to Delete Item in Genre List " << endl << endl;
+	s_item.SetInfoFromKB();
+	g_item.SetGenreNameFromKB();
+	g_Tree.RetrieveItem(g_item, found_g);
+	if(found_g == true)//입력한 genre랑 일치하는 genre가 존재하는 경우
+	{
+		BinarySearchTree<class SongList> *temp;
+		temp = g_item.GetGenreList();
+		temp->RetrieveItem(s_item, found_s);//기존의 genre의 song list에서 입력받은 정보가 있는지 검색
+		if(found_s == true)//입력받은 정보가 있는 경우
+		{
+			g_item.DeleteSongList(s_item);//해당하는 genre에서 입력받은 song list 데이터를 지운다.
+			g_Tree.DeleteItem(g_item);//기존의 genre list에서 해당하는 장르를 지운다.
+			g_Tree.Add(g_item);//다시 genre list에 genre를 추가 한다.
+		}
+		else
+		{
+			cout << "There is no matched Song in Genre List" << endl;
+		}
+	}
+	else
+	{
+		cout << "There is no matched Genre " << endl;
+	}
+}
+
+void Application::DeleteAlbumItem()
+{
+	SongList s_item;
+	AlbumList al_item;
+	bool found_s;
+	bool found_al;
+	cout << "Input Id and Title to Delete Item in Album List " << endl << endl;
+	s_item.SetInfoFromKB();
+	al_item.SetAlbumNameFromKB();
+	al_Tree.RetrieveItem(al_item, found_al);
+	if(found_al == true)//입력한 genre랑 일치하는 genre가 존재하는 경우
+	{
+		BinarySearchTree<class SongList> *temp;
+		temp = al_item.GetAlbumList();
+		temp->RetrieveItem(s_item, found_s);//기존의 genre의 song list에서 입력받은 정보가 있는지 검색
+		if(found_s == true)//입력받은 정보가 있는 경우
+		{
+			al_item.DeleteSongList(s_item);//해당하는 genre에서 입력받은 song list 데이터를 지운다.
+			al_Tree.DeleteItem(al_item);//기존의 genre list에서 해당하는 장르를 지운다.
+			al_Tree.Add(al_item);//다시 genre list에 genre를 추가 한다.
+		}
+		else
+		{
+			cout << "There is no matched Song in Album List" << endl;
+		}
+	}
+	else
+	{
+		cout << "There is no matched Album " << endl;
+	}
+}
+
+void Application::DeleteArtistItem()
+{
+	SongList s_item;
+	ArtistList ar_item;
+	bool found_s;
+	bool found_ar;
+	cout << "Input Id and Title to Delete Item in Artist List " << endl << endl;
+	s_item.SetInfoFromKB();
+	ar_item.SetArtistNameFromKB();
+	ar_Tree.RetrieveItem(ar_item, found_ar);
+	if(found_ar == true)//입력한 genre랑 일치하는 genre가 존재하는 경우
+	{
+		BinarySearchTree<class SongList> *temp;
+		temp = ar_item.GetArtistList();
+		temp->RetrieveItem(s_item, found_s);//기존의 genre의 song list에서 입력받은 정보가 있는지 검색
+		if(found_s == true)//입력받은 정보가 있는 경우
+		{
+			ar_item.DeleteSongList(s_item);//해당하는 genre에서 입력받은 song list 데이터를 지운다.
+			ar_Tree.DeleteItem(ar_item);//기존의 genre list에서 해당하는 장르를 지운다.
+			ar_Tree.Add(ar_item);//다시 genre list에 genre를 추가 한다.
+		}
+		else
+		{
+			cout << "There is no matched Song in Artist List" << endl;
+		}
+	}
+	else
+	{
+		cout << "There is no matched Artist " << endl;
+	}
 }
 
 // 현재 Tree의 모든 노드를 출력하는 함수
@@ -202,7 +388,7 @@ void Application::RepalceItem()
 			temp->RetrieveItem(indata, found_s);
 			if(found_s == true)//Genre의 변경사항이 없음
 			{
-				cout << "There is change in Genre List" << endl;
+				cout << "There is no change in Genre List" << endl;
 			}
 			else//기존의 장르에서 다른 기존 장르로 재설정한 경우
 			{

@@ -197,6 +197,7 @@ void MasterType::SetRecordFromKB()
 
 void MasterType::ResetSongInfoFromKB()
 {
+    cout << "Input the Information of the Song to be Update : " << endl;
     SetArtistFromKB();
     SetComposerFromKB();
     SetLyricistFromKB();

@@ -57,12 +57,16 @@ void ArtistList::DisplayArtistRecordsOnScreen()
 
 void ArtistList::SetArtistIdFromKB()
 {
-    cin >> mArtistId;
+    string ID;
+    cout << "\tArtist ID : ";
+    getline(cin, ID);
+    mArtistId = stoi(ID);
 }
 
 void ArtistList::SetArtistNameFromKB()
 {
-    cin >> mArtist;
+    cout << "\tArtist : ";
+    getline(cin, mArtist);
 }
 
 string ArtistList::to_string() const

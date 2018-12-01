@@ -56,12 +56,23 @@ class SongList
 
     void SetIdFromKB()
     {
-        cin >> s_id;
+        string ID;
+        cout << "\tID : ";
+        getline(cin, ID);
+        s_id = stoi(ID);
+        
     }
 
     void SetTitleFromKB()
     {
-        cin >> s_title;
+        cout << "\tTitle : ";
+        getline(cin, s_title);
+    }
+
+    void SetInfoFromKB()
+    {
+        SetIdFromKB();
+        SetTitleFromKB();
     }
 
     

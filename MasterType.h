@@ -54,6 +54,7 @@ class MasterType
             {
                 this->id = obj.id;
                 this->title = obj.title;
+                this->artist = obj.artist;
                 this->composer = obj.composer;
                 this->lyricist = obj.lyricist;
                 this->album = obj.album;

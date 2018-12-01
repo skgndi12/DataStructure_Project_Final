@@ -56,12 +56,16 @@ void AlbumList::DisplayAlbumRecordsOnScreen()
 
 void AlbumList::SetAlbumIdFromKB()
 {
-    cin >> mAlbumId;
+    string ID;
+    cout << "\tAlbum ID : ";
+    getline(cin, ID);
+    mAlbumId = stoi(ID);
 }
 
 void AlbumList::SetAlbumNameFromKB()
 {
-    cin >> mAlbum;
+    cout << "\tAlbum : ";
+    getline(cin, mAlbum);
 }
 string AlbumList::to_string() const
 {
