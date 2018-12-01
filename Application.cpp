@@ -470,26 +470,44 @@ void Application::RepalceItem()
 	{
 		cout << "There is no matched data" << endl;
 	}
-
-
-
-
 }
-
 // Tree에서 찾고자 하는 값의 노드를 검색하는 함수
 void Application::SearchItem()
 {
 	MasterType item;
 	cout << "Input Id to search item : " << endl;
 	item.SetIdFromKB();								// 검색하고자 하는 값(Id)을 키보드로부터 입력받음
+	item.SetTitleFromKB();// 검색하고자 하는 곡명을 키보드로부터 입력받음
 
 	bool found;										// 겁색여부를 저장할 found
 	Tree.RetrieveItem(item, found);					// RetrieveItem 함수를 통해 Tree에서 검색
 	if (found == true)								// 찾으면 찾았다는 문구와 함께, 관련 정보까지 출력
 	{
-		cout << "Target item exists in the list." << endl;
+		cout << "Target item exists in the Master list." << endl;
 		item.DisplayRecordOnScreen();
 	}
 	else
-		cout << "Target item is not in the list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+}
+
+void Application::SearchByTitleNLyric()
+{
+	MasterType item;
+	bool found;
+	cout << "Input the Title and ID you want to find ";
+	item.SetIdFromKB();
+	item.SetTitleFromKB();
+	string lyric;
+	cout << "Please Input the lyrics : ";
+	getline(cin, lyric);
+	Tree.RetrieveItem(item, found);
+	if(found == true || item.GetLyric() == lyric)
+	{
+			cout << "Target item exists in the Master list." << endl;
+			item.DisplayRecordOnScreen();
+	}
+	else
+	{
+		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+	}
 }

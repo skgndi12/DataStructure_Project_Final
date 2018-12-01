@@ -74,6 +74,9 @@ public:
 	void RepalceItem();// List에 있는 기존의 item들을 곡명과 id를 입력받아 찾은 후 해당 노드의 변수들을 다시 재설정한다.
 	void SearchItem();
 
+	void SearchByTitleNLyric();//MasterType에서 곡명과 가사를 사용하여 곡의 정보를 검색
+
+
 private:
 	BinarySearchTree<class MasterType> Tree;
 	// MasterType 객체
