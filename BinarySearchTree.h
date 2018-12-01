@@ -160,11 +160,11 @@ void BinarySearchTree<T>::RetrieveItem(T& item, bool &found)const
 template<typename T>
 void BinarySearchTree<T>::PrintTree(ostream &out)const
 {
-	cout << "[InOrder]" << endl;
+	cout << "\t[InOrder]" << endl;
 	PrintInOrderTraversal(root, out);			// InOrder 방법으로 출력
-	cout << endl << "[PreOrder]" << endl;
+	cout << endl << "\t[PreOrder]" << endl;
 	PrintPreOrderTraversal(root, out);			// PreOrder 방법으로 출력
-	cout << endl << "[PostOrder]" << endl;
+	cout << endl << "\t[PostOrder]" << endl;
 	PrintPostOrderTraversal(root, out);			// PostOrder 방법으로 출력
 }
 

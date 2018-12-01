@@ -244,9 +244,9 @@ string MasterType::to_string() const
     string ID(std::to_string(id));
     char buf[256];
 
-    ::snprintf(buf, sizeof(buf), "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
-        ID.c_str(), title.c_str(), artist.c_str(),composer.c_str(), lyricist.c_str(),
-        album.c_str(), genre.c_str(), lyric.c_str());
+    ::snprintf(buf, sizeof(buf), "\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\n",
+        "ID : ",ID.c_str(),"Title : ", title.c_str(), "Artist : ", artist.c_str(),"Composer : ",composer.c_str(),"Lyricist : ", lyricist.c_str(),"Album : ",
+        album.c_str(), "Genre : ", genre.c_str(),"Lyric : ", lyric.c_str());
 	
 	return buf;
 }

@@ -35,12 +35,12 @@ void ArtistList::SetInfo(int inArtistId, string inArtist)
 
 void ArtistList::DisplayArtistIdOnScreen()
 {
-    cout << "Artist ID : "<<  mArtistId << endl;
+    cout << "\tArtist ID : "<<  mArtistId << endl;
 }
 
 void ArtistList::DisplayArtistNameOnScreen()
 {
-    cout << "Artist Name : " << mArtist << endl;
+    cout << "\tArtist Name : " << mArtist << endl;
 }
 
 void ArtistList::DisplaySongListOnScreen()
@@ -50,7 +50,6 @@ void ArtistList::DisplaySongListOnScreen()
 
 void ArtistList::DisplayArtistRecordsOnScreen()
 {
-    DisplayArtistIdOnScreen();
     DisplayArtistNameOnScreen();
     DisplaySongListOnScreen();
 }
@@ -73,8 +72,8 @@ string ArtistList::to_string() const
 {
     char buf[256];
 
-    ::snprintf(buf, sizeof(buf), "%s\n",
-        mArtist.c_str());
+    ::snprintf(buf, sizeof(buf), "\t%s%s\n\n",
+        "Artist : ",mArtist.c_str());
 	
 	return buf;
 }

@@ -35,12 +35,12 @@ void GenreList::SetInfo(int inGenreId, string inGenre)
 
 void GenreList::DisplayGenreIdOnScreen()
 {
-    cout << "Genre ID : "<<  mGenreId << endl;
+    cout << "\tGenre ID : "<<  mGenreId << endl;
 }
 
 void GenreList::DisplayGenreNameOnScreen()
 {
-    cout << "Genre Name : " << mGenre << endl;
+    cout << "\tGenre Name : " << mGenre << endl;
 }
 
 void GenreList::DisplaySongListOnScreen()
@@ -50,7 +50,6 @@ void GenreList::DisplaySongListOnScreen()
 
 void GenreList::DisplayGenreRecordsOnScreen()
 {
-    DisplayGenreIdOnScreen();
     DisplayGenreNameOnScreen();
     DisplaySongListOnScreen();
 }
@@ -65,7 +64,7 @@ void GenreList::SetGenreIdFromKB()
 
 void GenreList::SetGenreNameFromKB()
 {
-    cout << "\tGenre Name: ";
+    cout << "\tGenre Name : ";
     getline(cin, mGenre);
 }
 
@@ -73,8 +72,8 @@ string GenreList::to_string() const
 {
     char buf[256];
 
-    ::snprintf(buf, sizeof(buf), "%s\n",
-        mGenre.c_str());
+    ::snprintf(buf, sizeof(buf), "\t%s%s\n\n",
+       "Genre : ", mGenre.c_str());
 	
 	return buf;
 }

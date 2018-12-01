@@ -91,8 +91,8 @@ class SongList
     string ID(std::to_string(s_id));
     char buf[256];
 
-    ::snprintf(buf, sizeof(buf), "%s\n%s\n",
-        ID.c_str(), s_title.c_str());
+    ::snprintf(buf, sizeof(buf), "\t%s%s\n\t%s%s\n\n",
+        "ID : ", ID.c_str(),"Title : ", s_title.c_str());
 	
 	return buf;
     }

@@ -80,10 +80,17 @@ public:
 
 	void SearchByTitleNLyric();//MasterType에서 곡명과 가사를 사용하여 곡의 정보를 검색
 
-	void SearchByGenre();//GenreList에서 장르와 곡명과 id를 사용하여 곡의 정보를 검색
+	void SearchByGenre();//GenreList에서 장르명을 사용하여 장르명이 일치하는 곡의 정보를 모두 출력
 
 	void SearchByGenreNLyric();//GenreList에서 장르와 가사를 사용하여 곡의 정보를 검색
 
+	void SearchByArtist();//ArtitsList에서 아티스트명을 사용하여 아티스트명이 일치하는 곡의 정보를 모두 출력
+
+	void SearchByArtistNGenre();//ArtistList와 GenreList에서 겹치는 곡의 정보를 출력
+
+	void SearchByAlbum();//AlbumList에서 앨범명을 사용하여 얄범명이 일치하는 곡의 정보를 모두 출력
+
+	void SearchByAlbumNLyric();//AlbumList에서 장르와 가사를 사용하여 곡의 정보를 검색
 
 	
 	

@@ -42,6 +42,21 @@ void Application::Run()
 		case 11:
 			SearchByGenre();
 			break;
+		case 12:
+			SearchByGenreNLyric();
+			break;
+		case 13:
+			SearchByArtist();
+			break;
+		case 14:
+			SearchByArtistNGenre();
+			break;
+		case 15:
+			SearchByAlbum();
+			break;
+		case 16:
+			SearchByAlbumNLyric();
+			break;
 		case 0:
 			return;
 		default:
@@ -56,7 +71,7 @@ int Application::GetCommand()
 {
 	string command;
 	cout << endl << endl;
-	cout << "\t---ID -- Command ----- " << endl;
+	cout << "\t    >------ID -- Command ------< " << endl;
 	cout << "\t   1 : Add Item to the Master List" << endl;
 	cout << "\t   2 : Delete Item to the Master List" << endl;
 	cout << "\t   3 : Display Item" << endl;
@@ -85,7 +100,7 @@ int Application::GetCommand()
 void Application::InsertItem()
 {
 	MasterType item;
-	cout << "Insert Item : " << endl;
+	cout << "\tInsert Item : " << endl;
 	item.SetRecordFromKB();				// Tree에 추가할 item 값을 키보드로부터 입력받음
 	Tree.Add(item);						// Add함수를 통해서 item을 Tree에 추가함
 	DisplayItem();						// 현재 Tree의 node를 모두 출력함
@@ -93,7 +108,7 @@ void Application::InsertItem()
 
 void Application::Add()
 {
-	cout << "Enter music to add to the user list : " << endl;
+	cout << "\tInput music to add to the user list : " << endl;
 	MasterType item;
 	item.SetIdFromKB();
 	item.SetTitleFromKB();
@@ -120,7 +135,7 @@ void Application::Add()
 			g_item.AddSongList(indata);
 			g_Tree.Add(g_item);
 		}
-		else
+		else if(found_g == false)
 		{
 			g_item.AddSongList(indata);
 			g_Tree.Add(g_item);
@@ -156,7 +171,7 @@ void Application::Add()
 	}
 	else
 	{
-		cout << "There is no matched data" << endl;
+		cout << "\tThere is no matched data" << endl;
 	}
 	DisplayItem();
 }
@@ -168,7 +183,7 @@ void Application::RemoveItem()
 	AlbumList al_item;
 	ArtistList ar_item;
 	SongList indata;
-	cout << "Input Id and Title to delete item : " << endl;
+	cout << "\tInput Id and Title to delete item : " << endl;
 	item.SetIdFromKB();					// Tree에서 지우려고 하는 id 값을 키보드로부터 입력받음
 	item.SetTitleFromKB();            //Tree에서 지우려고 하는 title 값을 키보드로부터 입력받음
 	indata.SetInfo(item.GetId(), item.GetTitle());// 입력받은 정보를 song list에 저장
@@ -200,12 +215,12 @@ void Application::RemoveItem()
 			}
 			else//g_list에서 song list의 정보가 없을 경우
 			{
-				cout << "There is no matched Song in Genre List" << endl;
+				cout << "\tThere is no matched Song in Genre List" << endl;
 			}
 		}
 		else//해당하는 genre가 없을 경우
 		{
-			cout << "There is no matched Genre" << endl;
+			cout << "\tThere is no matched Genre" << endl;
 		}
 		if(found_al == true)//해당하는 album이 있는 경우
 		{
@@ -221,13 +236,13 @@ void Application::RemoveItem()
 			}
 			else//al_list에서 song list의 정보가 없을 경우
 			{
-				cout << "There is no matched Song in Album List" << endl;
+				cout << "\tThere is no matched Song in Album List" << endl;
 			}
 		}
 		
 		else//해당하는 album이 없을 경우
 		{
-			cout << "There is no matched Album" << endl;
+			cout << "\tThere is no matched Album" << endl;
 		}
 		if(found_ar == true)//해당하는 artist가 있는 경우
 		{
@@ -243,18 +258,18 @@ void Application::RemoveItem()
 			}
 			else//ar_list에서 song list의 정보가 없을 경우
 			{
-				cout << "There is no matched Song in Artist List" << endl;
+				cout << "\tThere is no matched Song in Artist List" << endl;
 			}
 		}
 		else//해당하는 artist이 없을 경우
 		{
-			cout << "There is no matched Artist" << endl;
+			cout << "\tThere is no matched Artist" << endl;
 		}	
 		Tree.DeleteItem(item);			// DeleteItem함수를 통해서 Tree에서 item값에 해당하는 노드를 삭제함
 		DisplayItem();					// 지우고 나서의 Tree를 출력
 	}
 	else
-		cout << "No item to delete" << endl;	// 지우려고 하는 값의 node가 없을 경우 
+		cout << "\tNo item to delete" << endl;	// 지우려고 하는 값의 node가 없을 경우 
 }
 
 void Application::DeleteGenreItem()
@@ -263,7 +278,7 @@ void Application::DeleteGenreItem()
 	GenreList g_item;
 	bool found_s;
 	bool found_g;
-	cout << "Input Id and Title to Delete Item in Genre List " << endl << endl;
+	cout << "\tInput Id and Title to Delete Item in Genre List " << endl << endl;
 	s_item.SetInfoFromKB();
 	g_item.SetGenreNameFromKB();
 	g_Tree.RetrieveItem(g_item, found_g);
@@ -280,12 +295,12 @@ void Application::DeleteGenreItem()
 		}
 		else
 		{
-			cout << "There is no matched Song in Genre List" << endl;
+			cout << "\tThere is no matched Song in Genre List" << endl;
 		}
 	}
 	else
 	{
-		cout << "There is no matched Genre " << endl;
+		cout << "\tThere is no matched Genre " << endl;
 	}
 }
 
@@ -295,7 +310,7 @@ void Application::DeleteAlbumItem()
 	AlbumList al_item;
 	bool found_s;
 	bool found_al;
-	cout << "Input Id and Title to Delete Item in Album List " << endl << endl;
+	cout << "\tInput Id and Title to Delete Item in Album List " << endl << endl;
 	s_item.SetInfoFromKB();
 	al_item.SetAlbumNameFromKB();
 	al_Tree.RetrieveItem(al_item, found_al);
@@ -312,12 +327,12 @@ void Application::DeleteAlbumItem()
 		}
 		else
 		{
-			cout << "There is no matched Song in Album List" << endl;
+			cout << "\tThere is no matched Song in Album List" << endl;
 		}
 	}
 	else
 	{
-		cout << "There is no matched Album " << endl;
+		cout << "\tThere is no matched Album " << endl;
 	}
 }
 
@@ -327,7 +342,7 @@ void Application::DeleteArtistItem()
 	ArtistList ar_item;
 	bool found_s;
 	bool found_ar;
-	cout << "Input Id and Title to Delete Item in Artist List " << endl << endl;
+	cout << "\tInput Id and Title to Delete Item in Artist List " << endl << endl;
 	s_item.SetInfoFromKB();
 	ar_item.SetArtistNameFromKB();
 	ar_Tree.RetrieveItem(ar_item, found_ar);
@@ -344,12 +359,12 @@ void Application::DeleteArtistItem()
 		}
 		else
 		{
-			cout << "There is no matched Song in Artist List" << endl;
+			cout << "\tThere is no matched Song in Artist List" << endl;
 		}
 	}
 	else
 	{
-		cout << "There is no matched Artist " << endl;
+		cout << "\tThere is no matched Artist " << endl;
 	}
 }
 
@@ -368,7 +383,7 @@ void Application::RepalceItem()
 	GenreList g_item;
 	AlbumList al_item;
 	ArtistList ar_item;
-	cout << "Enter the title of the song to be updated and its ID : " << endl;
+	cout << "\tInput the title of the song to be updated and its ID : " << endl;
 	item.SetIdFromKB();//갱신할 정보를 검색하기 위한 정보를 저장
 	item.SetTitleFromKB();
 	SongList indata;
@@ -401,7 +416,7 @@ void Application::RepalceItem()
 			temp->RetrieveItem(indata, found_s);
 			if(found_s == true)//Genre의 변경사항이 없음
 			{
-				cout << "There is no change in Genre List" << endl;
+				cout << "\tThere is no change in Genre List" << endl;
 			}
 			else//기존의 장르에서 다른 기존 장르로 재설정한 경우
 			{
@@ -429,7 +444,7 @@ void Application::RepalceItem()
 			temp->RetrieveItem(indata, found_s);
 			if(found_s == true)//Album의 변경사항이 없음
 			{
-				cout << "There is change in Album List" << endl;
+				cout << "\tThere is change in Album List" << endl;
 			}
 			else//기존의 장르에서 다른 기존 장르로 재설정한 경우
 			{
@@ -457,7 +472,7 @@ void Application::RepalceItem()
 			temp->RetrieveItem(indata, found_s);
 			if(found_s == true)//Artist의 변경사항이 없음
 			{
-				cout << "There is change in Artist List" << endl;
+				cout << "\tThere is change in Artist List" << endl;
 			}
 			else//기존의 장르에서 다른 기존 장르로 재설정한 경우
 			{
@@ -481,14 +496,14 @@ void Application::RepalceItem()
 	}
 	else
 	{
-		cout << "There is no matched data" << endl;
+		cout << "\tThere is no matched data" << endl;
 	}
 }
 // Tree에서 찾고자 하는 값의 노드를 검색하는 함수
 void Application::SearchItem()
 {
 	MasterType item;
-	cout << "Input Id to search item : " << endl;
+	cout << "\tInput Id to search item : " << endl;
 	item.SetIdFromKB();								// 검색하고자 하는 값(Id)을 키보드로부터 입력받음
 	item.SetTitleFromKB();// 검색하고자 하는 곡명을 키보드로부터 입력받음
 
@@ -496,72 +511,230 @@ void Application::SearchItem()
 	Tree.RetrieveItem(item, found);					// RetrieveItem 함수를 통해 Tree에서 검색
 	if (found == true)								// 찾으면 찾았다는 문구와 함께, 관련 정보까지 출력
 	{
-		cout << "Target item exists in the Master list." << endl;
+		cout << "\tTarget item exists in the Master list." << endl;
 		item.DisplayRecordOnScreen();
 	}
 	else
-		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+		cout << "\tTarget item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
 }
 
 void Application::SearchByTitleNLyric()//MasterType에서 곡명과 가사로 검색
 {
 	MasterType item;
 	bool found;
-	cout << "Input the Title and ID you want to find ";
+	cout << "\tInput the Title and ID you want to find " << endl;
 	item.SetIdFromKB();
 	item.SetTitleFromKB();
 	string lyric;
-	cout << "Please Input the lyrics : ";
+	cout << "\tPlease Input the lyrics : ";
 	getline(cin, lyric);
 	Tree.RetrieveItem(item, found);
 	if(found == true || item.GetLyric() == lyric)
 	{
-			cout << "Target item exists in the Master list." << endl;
+			cout << "\tTarget item exists in the Master list." << endl << endl;
 			item.DisplayRecordOnScreen();
 	}
 	else
 	{
-		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+		cout << "\tTarget item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
 	}
 }
 
 void Application::SearchByGenre()
 {
-	MasterType item;
+	GenreList g_item;
+	cout << "\tInput the Genre Name to Find the Song" << endl << endl;
+	g_item.SetGenreNameFromKB();
+	bool found_g;
+	g_Tree.RetrieveItem(g_item, found_g);
+	if(found_g == true)
+	{
+		cout << "\tTarget Genre is in the Genre list" << endl << endl;
+		g_item.DisplayGenreNameOnScreen();
+		g_item.DisplaySongListOnScreen();
+	}
+	else
+	{
+		cout << "\tTarget Genre is not in the Genre list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+	}
+	
+	
+}
+
+void Application::SearchByGenreNLyric()
+{
 	GenreList g_item;
 	SongList indata;
-	bool found;
 	bool found_g;
 	bool found_s;
-	item.SetIdFromKB();
-	item.SetTitleFromKB();
-	g_item.SetGenreName(item.GetGenre());
-	Tree.RetrieveItem(item, found);
-	if(found == true)
+	string lyric;
+	g_item.SetGenreNameFromKB();
+	indata.SetIdFromKB();
+	cout << "\tPlease Input the lyrics : ";
+	getline(cin, lyric);
+	g_Tree.RetrieveItem(g_item, found_g);
+	if(found_g == true)
 	{
-		g_Tree.RetrieveItem(g_item, found_g);
-		if(found_g == true)
+		BinarySearchTree<class SongList> *temp;
+		temp = g_item.GetGenreList();//songlist의 데이터를 일일이 MasterType에 대입해봐서 가사와 장르가 똑같은 원소가 있는지 검사
+		temp->RetrieveItem(indata, found_s);
+		if(found_s == true)
 		{
-			BinarySearchTree<class SongList> * temp;
-			temp = g_item.GetGenreList();
-			temp->RetrieveItem(indata, found_s);
-			if(found_s == true)
+			MasterType item;
+			bool found;
+			item.SetId(indata.GetId());
+			item.SetTitle(indata.GetTitle());
+			Tree.RetrieveItem(item, found);
+			if(item.GetLyric() == lyric)
 			{
-				cout << "Target item exists in the Genre list." << endl;
+				cout << "\tTarget item is in the list" << endl << endl;
 				item.DisplayRecordOnScreen();
 			}
 			else
 			{
-				cout << "Target item exists in the Genre list." << endl;
-			}
+				cout << "\tTarget item is not in the list" << endl;
+			}		
 		}
 		else
 		{
-			cout << "There is no matched Genre" << endl;
+			cout << "\tTarget item is not in the Genre's Song List" << endl;
 		}
 	}
 	else
 	{
-		cout << "There is no matched Song in Master List" << endl;
+		cout << "\tTarget genre is not in the Genre List" << endl;
 	}
+
+	
+}
+
+void Application::SearchByArtist()
+{
+	ArtistList ar_item;
+	cout << "\tInput the Artist Name to Find the Song Info" << endl << endl;
+	ar_item.SetArtistNameFromKB();
+	bool found_ar;
+	ar_Tree.RetrieveItem(ar_item, found_ar);
+	if(found_ar == true)
+	{
+		cout << "\tTarget Artist is in the Artist list" << endl << endl;
+		ar_item.DisplayArtistNameOnScreen();
+		ar_item.DisplaySongListOnScreen();
+	}
+	else
+	{
+		cout << "\tTarget Artist is not in the Artist list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+	}	
+}
+
+void Application::SearchByArtistNGenre()
+{
+	GenreList g_item;
+	ArtistList ar_item;
+	SongList indata1;
+	SongList indata2;
+	bool found_g;
+	bool found_ar;
+	bool found_s1;
+	bool found_s2;
+	cout << "Input the Artist and Genre to Find the Song Info" << endl << endl;
+	g_item.SetGenreNameFromKB();
+	ar_item.SetArtistNameFromKB();
+	indata1.SetIdFromKB();
+	indata2.SetId(indata1.GetId());
+	g_Tree.RetrieveItem(g_item, found_g);
+	ar_Tree.RetrieveItem(ar_item, found_ar);
+	if(found_g == true && found_ar == true)
+	{
+		BinarySearchTree<class SongList> * temp_g;
+		BinarySearchTree<class SongList> * temp_ar;
+		temp_g = g_item.GetGenreList();
+		temp_ar = ar_item.GetArtistList();
+		temp_g->RetrieveItem(indata1, found_s1);
+		temp_ar->RetrieveItem(indata2, found_s2);
+		if(indata1.GetId() == indata2.GetId() && indata1.GetTitle() == indata2.GetTitle())
+		{
+			MasterType item;
+			bool found;
+			item.SetId(indata1.GetId());
+			item.SetTitle(indata1.GetTitle());
+			Tree.RetrieveItem(item, found);
+			cout << "\tTarget item is in the Artist and Genre List" << endl << endl;
+			item.DisplayRecordOnScreen();
+
+		}
+		else
+		{
+			cout <<"\tTarget item is not in Artist list or Genre list " << endl;
+		}
+	}
+	else
+	{
+		cout << "\tThere is no matched item in Artist or Genre List" << endl;
+	}
+}
+
+void Application::SearchByAlbum()
+{
+	AlbumList al_item;
+	cout << "\tInput the Album Name to Find the Song Info" << endl << endl;
+	al_item.SetAlbumNameFromKB();
+	bool found_al;
+	al_Tree.RetrieveItem(al_item, found_al);
+	if(found_al == true)
+	{
+		cout << "\tTarget Album is in the Album list" << endl << endl;
+		al_item.DisplayAlbumNameOnScreen();
+		al_item.DisplaySongListOnScreen();
+	}
+	else
+	{
+		cout << "\tTarget Album is not in the Album list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+	}	
+}
+void Application::SearchByAlbumNLyric()
+{
+	AlbumList al_item;
+	SongList indata;
+	bool found_al;
+	bool found_s;
+	string lyric;
+	al_item.SetAlbumNameFromKB();
+	indata.SetIdFromKB();
+	cout << "\tPlease Input the lyrics : ";
+	getline(cin, lyric);
+	al_Tree.RetrieveItem(al_item, found_al);
+	if(found_al == true)
+	{
+		BinarySearchTree<class SongList> *temp;
+		temp = al_item.GetAlbumList();//songlist의 데이터를 일일이 MasterType에 대입해봐서 가사와 장르가 똑같은 원소가 있는지 검사
+		temp->RetrieveItem(indata, found_s);
+		if(found_s == true)
+		{
+			MasterType item;
+			bool found;
+			item.SetId(indata.GetId());
+			item.SetTitle(indata.GetTitle());
+			Tree.RetrieveItem(item, found);
+			if(item.GetLyric() == lyric)
+			{
+				cout << "\tTarget item is in the list" << endl << endl;
+				item.DisplayRecordOnScreen();
+			}
+			else
+			{
+				cout << "\tTarget item is not in the list" << endl;
+			}		
+		}
+		else
+		{
+			cout << "\tTarget item is not in the Album's Song List" << endl;
+		}
+	}
+	else
+	{
+		cout << "\tTarget genre is not in the Album List" << endl;
+	}
+
+	
 }
