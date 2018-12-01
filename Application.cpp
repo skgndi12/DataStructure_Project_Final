@@ -19,22 +19,28 @@ void Application::Run()
 			DisplayItem();
 			break;
 		case 4:
-			SearchItem();
-			break;
-		case 5:
 			Add();
 			break;
-		case 6:
+		case 5:
 			RepalceItem();
 			break;
-		case 7:
+		case 6:
 			DeleteGenreItem();
 			break;
-		case 8:
+		case 7:
 			DeleteAlbumItem();
 			break;
-		case 9:
+		case 8:
 			DeleteArtistItem();
+			break;
+		case 9:
+			SearchItem();
+			break;
+		case 10:
+			SearchByTitleNLyric();
+			break;
+		case 11:
+			SearchByGenre();
 			break;
 		case 0:
 			return;
@@ -54,12 +60,19 @@ int Application::GetCommand()
 	cout << "\t   1 : Add Item to the Master List" << endl;
 	cout << "\t   2 : Delete Item to the Master List" << endl;
 	cout << "\t   3 : Display Item" << endl;
-	cout << "\t   4 : Search Item" << endl;
-	cout << "\t   5 : Add Song in All List" << endl;
-	cout << "\t   6 : Update Song in All List" << endl;
-	cout << "\t   7 : Delete Song in Genre List" << endl;
-	cout << "\t   8 : Delete Song in Album List" << endl;
-	cout << "\t   9 : Delete Song in Artist List" << endl;
+	cout << "\t   4 : Add Song in All List" << endl;
+	cout << "\t   5 : Update Song in All List" << endl;
+	cout << "\t   6 : Delete Song in Genre List" << endl;
+	cout << "\t   7 : Delete Song in Album List" << endl;
+	cout << "\t   8 : Delete Song in Artist List" << endl;
+	cout << "\t   9 : Search By Title in Master List" << endl;
+	cout << "\t   10 : Search By Title N Lyric in Master List" << endl;
+	cout << "\t   11 : Search By Genre in Genre List" << endl;
+	cout << "\t   12 : Search By Genre N Lyric in Genre List" << endl;
+	cout << "\t   13 : Search By Artist in Artist List" << endl;
+	cout << "\t   14 : Search By Artist N Genre in Master List" << endl;
+	cout << "\t   15 : Search By Album in Album List" << endl;
+	cout << "\t   16 : Search By Album N Lyric in Master List " << endl;
 	cout << "\t   0 : Quit " << endl;
 
 	cout << endl << "\t Choose a Command--> ";
@@ -490,7 +503,7 @@ void Application::SearchItem()
 		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
 }
 
-void Application::SearchByTitleNLyric()
+void Application::SearchByTitleNLyric()//MasterType에서 곡명과 가사로 검색
 {
 	MasterType item;
 	bool found;
@@ -509,5 +522,46 @@ void Application::SearchByTitleNLyric()
 	else
 	{
 		cout << "Target item is not in the Master list." << endl;		// 못 찾았으면 못 찾았다는 문구를 출력
+	}
+}
+
+void Application::SearchByGenre()
+{
+	MasterType item;
+	GenreList g_item;
+	SongList indata;
+	bool found;
+	bool found_g;
+	bool found_s;
+	item.SetIdFromKB();
+	item.SetTitleFromKB();
+	g_item.SetGenreName(item.GetGenre());
+	Tree.RetrieveItem(item, found);
+	if(found == true)
+	{
+		g_Tree.RetrieveItem(g_item, found_g);
+		if(found_g == true)
+		{
+			BinarySearchTree<class SongList> * temp;
+			temp = g_item.GetGenreList();
+			temp->RetrieveItem(indata, found_s);
+			if(found_s == true)
+			{
+				cout << "Target item exists in the Genre list." << endl;
+				item.DisplayRecordOnScreen();
+			}
+			else
+			{
+				cout << "Target item exists in the Genre list." << endl;
+			}
+		}
+		else
+		{
+			cout << "There is no matched Genre" << endl;
+		}
+	}
+	else
+	{
+		cout << "There is no matched Song in Master List" << endl;
 	}
 }
