@@ -57,14 +57,14 @@ void ArtistList::DisplayArtistRecordsOnScreen()
 void ArtistList::SetArtistIdFromKB()
 {
     string ID;
-    cout << "\tArtist ID : ";
+    cout << "\t   <ARTIST ID> : ";
     getline(cin, ID);
     mArtistId = stoi(ID);
 }
 
 void ArtistList::SetArtistNameFromKB()
 {
-    cout << "\tArtist : ";
+    cout << "\t   <ARTIST> : ";
     getline(cin, mArtist);
 }
 
@@ -73,7 +73,7 @@ string ArtistList::to_string() const
     char buf[256];
 
     ::snprintf(buf, sizeof(buf), "\t%s%s\n\n",
-        "Artist : ",mArtist.c_str());
+        "   <ARTIST> : ",mArtist.c_str());
 	
 	return buf;
 }

@@ -2,7 +2,6 @@
 #define _SONGLIST_H
 #include <iostream>
 #include <string>
-#include "MasterType.h"
 
 using namespace std;
 
@@ -57,7 +56,7 @@ class SongList
     void SetIdFromKB()
     {
         string ID;
-        cout << "\tID : ";
+        cout << "\t   <ID> : ";
         getline(cin, ID);
         s_id = stoi(ID);
         
@@ -65,7 +64,7 @@ class SongList
 
     void SetTitleFromKB()
     {
-        cout << "\tTitle : ";
+        cout << "\t   <TITLE> : ";
         getline(cin, s_title);
     }
 
@@ -78,12 +77,12 @@ class SongList
     
     void DisplayId()
     {
-        cout << "\tSong ID : " << s_id <<endl;
+        cout << "\t   <ID> : " << s_id <<endl;
     }
 
     void DisplayTitle()
     {
-        cout << "\tSong Title : " << s_title << endl;
+        cout << "\t   <TITLE> : " << s_title << endl;
     }
 
     string to_string() const
@@ -92,15 +91,15 @@ class SongList
     char buf[256];
 
     ::snprintf(buf, sizeof(buf), "\t%s%s\n\t%s%s\n\n",
-        "ID : ", ID.c_str(),"Title : ", s_title.c_str());
+        "   <ID> : ", ID.c_str(),"   <TITLE> : ", s_title.c_str());
 	
 	return buf;
     }
 
     void DisplayAll()
     {
-        cout << "ID" << s_id << endl;
-        cout << "TITLE" << s_title << endl;
+        cout << "\t   <ID> : " << s_id << endl;
+        cout << "\t   <TITLE> : " << s_title << endl;
     }
     bool operator==(SongList item)
 	{

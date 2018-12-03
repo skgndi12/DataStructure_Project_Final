@@ -8,6 +8,11 @@
 #include "ArtistList.h"
 #include "AlbumList.h"
 #include "SongList.h"
+#include "PlayList.h"
+#include "DoublySortedLinkedList.h"
+#include "DoublyIterator.h"
+#include "CircularQueueType.h"
+#include <unistd.h>
 #include <string>
 #include <iostream>
 using namespace std;
@@ -19,12 +24,37 @@ public:
 	Application() 
 	{
 		command = 0;
+		playmode = 0;
+		playmodeinstop = 0;
+		menu_add = 0;
+		menu_delete = 0;
+		menu_dis = 0;
+		menu_search = 0;
+		menu_player = 0;
+		itor = NULL;
 	}
 	// 소멸자
-	~Application(){}
+	~Application()
+	{	
+		delete itor;
+	}
 
 	// Application 실행 함수
 	void Run();
+
+	void SelectAddMenu();
+
+	void SelectDeleteMenu();
+
+	void SelectDisplayMenu();
+
+	void SelectSearchMenu();
+
+	void SelectPlayerMenu();
+
+	void RunPlayer();//MusicPlayer 실행 함수
+
+	void RunPlayerInStop();//Stop 상황에서 MusicPlayer 실행 함수
 	
 	/**
 	*	@brief	command 번호를 입력받음
@@ -33,6 +63,22 @@ public:
 	*	@return command 값을 리턴함
 	*/
 	int GetCommand();
+
+	int GetAddCommand();
+
+	int GetDeleteCommand();
+
+	int GetDisplayCommand();
+
+	int GetSearchCommand();
+
+	int GetPlayerCommand();
+
+	int GetPlayModeCommand();//Play 명령을 받아온다.
+
+	int GetPlayModeCommandInStop();//Stop 상황에서 명령을 받는다.
+
+
 
 	/**
 	*	@brief	Tree에 item을 추가
@@ -71,6 +117,15 @@ public:
 	*	@pre	none
 	*	@post	Tree에 있으면 관련 정보도 같이 출력, 없으면 없다는 문구 출력
 	*/
+	void DisplayMasterList();//MasterList 출력
+
+	void DisplayGenreList();//GenreList 출력
+
+	void DisplayAlbumList();//AlbumList 출력
+
+	void DisplayArtistList();//ArtistList 출력
+
+	void DisplayAllList();//모든 리스트를 출력
 
 	void DisplaySongDetailInfo();//선택된 곡의 모든 정보를 출력
 
@@ -92,6 +147,25 @@ public:
 
 	void SearchByAlbumNLyric();//AlbumList에서 장르와 가사를 사용하여 곡의 정보를 검색
 
+
+	void AddPlayList();//PlayList에 곡 추가
+
+	void DeletePlayList();//PlayList에서 곡 삭제
+
+	void DisplayPlayList();//현재 PlayList를 출력
+
+	void ExecutePlayList();//PlayList의 음악을 실행시킨다
+
+	void PlayMusic();//음악을 재생한다.
+
+	void StopMusic();//음악 재생을 멈춘다.
+
+	void MoveForward();//다음 곡으로 넘어가는 기능
+
+	void MoveBackward();//이전 곡으로 되돌아가는 기능
+
+	void DisplayPlayLog();// 현재부터 30개 이전까지의 재생했던 곡을 출력
+
 	
 	
 private:
@@ -100,8 +174,24 @@ private:
 	BinarySearchTree<class GenreList> g_Tree;
 	// GenreList 객체
 	BinarySearchTree<class AlbumList> al_Tree;
+	// AlbumList 객체
 	BinarySearchTree<class ArtistList> ar_Tree;
+	// ArtistList 객체 
+	DoublySortedLinkedList<class PlayList> p_Tree;
+	// 재생했던 곡을 저장 해놓아서  비교하는 용도로 쓸 객체
+	DoublyIterator<class PlayList>* itor;
+	// PlayList의 현재 재생 곡을 보관하는 인덱스 객체
+	CircularQueueType<class PlayList> playlog;
+	
+	// PlayList의 현재 재생 곡을 저장하는 객체
 	int command;							// command
+	int playmode;
+	int playmodeinstop;
+	int menu_add;
+	int menu_delete;
+	int menu_dis;
+	int menu_search;
+	int menu_player;
 
 };
 #endif

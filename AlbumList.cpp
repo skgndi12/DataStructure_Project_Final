@@ -34,12 +34,12 @@ void AlbumList::SetInfo(int inAlbumId, string inAlbum)
 
 void AlbumList::DisplayAlbumIdOnScreen()
 {
-    cout << "\tAlbum ID : "<<  mAlbumId << endl;
+    cout << "\t   <ALBUM ID> : "<<  mAlbumId << endl;
 }
 
 void AlbumList::DisplayAlbumNameOnScreen()
 {
-    cout << "\tAlbum Name : " << mAlbum << endl;
+    cout << "\t   <ALBUM NAME> : " << mAlbum << endl;
 }
 
 void AlbumList::DisplaySongListOnScreen()
@@ -56,14 +56,14 @@ void AlbumList::DisplayAlbumRecordsOnScreen()
 void AlbumList::SetAlbumIdFromKB()
 {
     string ID;
-    cout << "\tAlbum ID : ";
+    cout << "\t   <ALBUM ID> : ";
     getline(cin, ID);
     mAlbumId = stoi(ID);
 }
 
 void AlbumList::SetAlbumNameFromKB()
 {
-    cout << "\tAlbum : ";
+    cout << "\t   <ALBUM> : ";
     getline(cin, mAlbum);
 }
 string AlbumList::to_string() const
@@ -71,7 +71,7 @@ string AlbumList::to_string() const
     char buf[256];
 
     ::snprintf(buf, sizeof(buf), "\t%s%s\n\n",
-        "Album : ", mAlbum.c_str());
+        "   <ALBUM> : ", mAlbum.c_str());
 	
 	return buf;
 }

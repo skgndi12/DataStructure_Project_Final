@@ -157,7 +157,7 @@ void BinarySearchTree<T>::RetrieveItem(T& item, bool &found)const
 }
 
 // Tree의 node를 각각의 방법대로 출력함
-template<typename T>
+/*template<typename T>
 void BinarySearchTree<T>::PrintTree(ostream &out)const
 {
 	cout << "\t[InOrder]" << endl;
@@ -166,6 +166,13 @@ void BinarySearchTree<T>::PrintTree(ostream &out)const
 	PrintPreOrderTraversal(root, out);			// PreOrder 방법으로 출력
 	cout << endl << "\t[PostOrder]" << endl;
 	PrintPostOrderTraversal(root, out);			// PostOrder 방법으로 출력
+}*/
+
+template<typename T>
+void BinarySearchTree<T>::PrintTree(ostream &out)const
+{
+	
+	PrintInOrderTraversal(root, out);			// InOrder 방법으로 출력	
 }
 
 /////////////////////////////Global functions//////////////////////////

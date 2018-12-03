@@ -87,37 +87,37 @@ void MasterType::SetRecord(int in_id, string in_title,string in_artist,string in
 
 void MasterType::DisplayIdOnScreen()
 {
-    cout << "\tId : " << id << endl;
+    cout << "\t   <ID> : " << id << endl;
 }
 
 void MasterType::DisplayTitleOnScreen()
 {
-    cout << "\tTitle : " << title << endl;
+    cout << "\t   <TITLE> : " << title << endl;
 }
 
 void MasterType::DisplayArtistOnScreen()
 {
-    cout << "\tArtist : "<< artist << endl;
+    cout << "\t   <ARTIST> : "<< artist << endl;
 }
 void MasterType::DisplayComposerOnScreen()
 {
-    cout << "\tCompose : " << composer << endl;
+    cout << "\t   <COMPOSER> : " << composer << endl;
 }
 void MasterType::DisplayLyricistOnScreen()
 {
-    cout << "\tLyricist : " << lyricist << endl;
+    cout << "\t   <LYRICSIT> : " << lyricist << endl;
 }
 void MasterType::DisplayAlbumOnScreen()
 {
-    cout << "\tAlbum : " << album << endl;
+    cout << "\t   <ALBUM> : " << album << endl;
 }
 void MasterType::DisplayGenreOnScreen()
 {
-    cout << "\tGenre : " << genre << endl;
+    cout << "\t   <GENRE> : " << genre << endl;
 }
 void MasterType::DisplayLyricOnScreen()
 {
-    cout << "\tLyric : " << lyric << endl;
+    cout << "\t   <LYRIC> : " << lyric << endl;
 }
 
 void MasterType::DisplayRecordOnScreen()
@@ -134,50 +134,50 @@ void MasterType::DisplayRecordOnScreen()
 void MasterType::SetIdFromKB()
 {
     string ID;
-    cout << "\tId : ";
+    cout << "\t   <ID> : ";
     getline(cin, ID);
     id = stoi(ID);
 }
 
 void MasterType::SetTitleFromKB()
 {
-    cout << "\tTitle : ";
+    cout << "\t   <TITLE> : ";
     getline(cin, title);
 }
 
 // Set artist from keyboard.
 void MasterType::SetArtistFromKB()
 {
-    cout << "\tArtist : ";
+    cout << "\t   <ARTIST> : ";
     getline(cin, artist);
 }
 
 void MasterType::SetComposerFromKB()
 {
-    cout << "\tComposer : ";
+    cout << "\t   <COMPOSER> : ";
     getline(cin, composer);
 }
 void MasterType::SetLyricistFromKB()
 {
-    cout << "\tLyricist : ";
+    cout << "\t   <LYRICIST> : ";
     getline(cin, lyricist);
 }
 // Set album from keyboard.
 void MasterType::SetAlbumFromKB()
 {
-    cout << "\tAlbum : ";
+    cout << "\t   <ALBUM> : ";
     getline(cin, album);
 }
 
 void MasterType::SetGenreFromKB()
 {
-    cout << "\tGenre : ";
+    cout << "\t   <GENRE> : ";
     getline(cin, genre);
 }
 
 void MasterType::SetLyricFromKB()
 {
-    cout << "\tLyric : ";
+    cout << "\t   <LYRIC> : ";
     getline(cin, lyric);
 }
 
@@ -197,7 +197,7 @@ void MasterType::SetRecordFromKB()
 
 void MasterType::ResetSongInfoFromKB()
 {
-    cout << "Input the Information of the Song to be Update : " << endl;
+    cout << "\t   INPUT THE INFORMATION OF THE SONG TO BE UPDATED " << endl << endl;
     SetArtistFromKB();
     SetComposerFromKB();
     SetLyricistFromKB();
@@ -245,8 +245,8 @@ string MasterType::to_string() const
     char buf[256];
 
     ::snprintf(buf, sizeof(buf), "\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\t%s%s\n\n",
-        "ID : ",ID.c_str(),"Title : ", title.c_str(), "Artist : ", artist.c_str(),"Composer : ",composer.c_str(),"Lyricist : ", lyricist.c_str(),"Album : ",
-        album.c_str(), "Genre : ", genre.c_str(),"Lyric : ", lyric.c_str());
+        "   <ID> : ",ID.c_str(),"   <TITLE> : ", title.c_str(), "   <ARTIST> : ", artist.c_str(),"   <COMPOSER> : ",composer.c_str(),"   <LYRICIST> : ", lyricist.c_str(),"   <ALBUM> : ",
+        album.c_str(), "   <GENRE> : ", genre.c_str(),"   <LYRIC> : ", lyric.c_str());
 	
 	return buf;
 }
